@@ -30,6 +30,11 @@
       padding: 0;
     }
 
+    /* Блокировка прокрутки body при открытой галерее */
+    body.modal-open {
+      overflow: hidden;
+    }
+
     .canvas-container {
       display: flex;
       justify-content: center;
@@ -339,11 +344,16 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
+    /* Стиль для надписи "Мой референс" — увеличен и с заглавной */
     .ref-image p {
       margin-top: 8px;
       font-family: 'Pierrot', 'Georgia', serif;
-      font-size: 18px;
+      font-size: 22px;
       color: #4a2a3f;
+      text-transform: lowercase;
+    }
+    .ref-image p::first-letter {
+      text-transform: uppercase;
     }
 
     .anketa-list {
@@ -362,6 +372,7 @@
       color: #6a4560;
     }
 
+    /* Адаптив для мобильных: увеличение текстов, включая футер и надпись "Мой референс" */
     @media (max-width: 850px) {
       .main-content {
         font-size: 21px;
@@ -374,6 +385,9 @@
       }
       .main-content table {
         font-size: 19px;
+      }
+      .ref-image p {
+        font-size: 28px;
       }
       .footer p {
         font-size: 22px;
@@ -393,8 +407,11 @@
       .main-content table {
         font-size: 21px;
       }
+      .ref-image p {
+        font-size: 32px;
+      }
       .footer p {
-        font-size: 25px;
+        font-size: 26px;
       }
     }
 
@@ -410,6 +427,9 @@
       }
       .main-content table {
         font-size: 22px;
+      }
+      .ref-image p {
+        font-size: 34px;
       }
       .footer p {
         font-size: 28px;
@@ -512,12 +532,16 @@
       background-color: #ecd9c6;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
+    /* Увеличение декоративной картинки на 10% для устранения белых краёв */
     .decor-img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+      width: 110%;
+      height: 110%;
+      object-fit: cover;
       display: block;
       pointer-events: none;
       background-color: #ecd9c6;
@@ -617,13 +641,14 @@
       <p>Важно понимать, что я цифровой художник, работающий на аудиторию Catwar. Состою в сайтовой команде художников. На варе я с конца 2016 года, могли знать как Масленицу/Мракоблик. Сейчас живой персонаж Зимнее Солнцестояние. Все время существую в ВТ, в других вселенных бывала, но только до появления ВТ.</p>
       <p>Творческий человек, занимаюсь не только рисованием, но и лепкой, вязанием крючком, вышивкой, плету из бисера. Также создаю оформление для осебе, блогов, уроков и не только. Чуть-чуть синестет из-за профдеформации.</p>
       <p>Люблю инди-рок, альтернативу, просто рок, пост-панк, фолк-рок, инди-фолк. Увлекаюсь КВ, МЛП, немного КХ (в большей степени заброшено), Майншилдом, Лололошкой. Слежу за веб-анимацией, в том числе российской. Играю в Майнкрафт. VOTV, Зайчик, spore, catwar и иногда в pony town. Обожаю вселенную Аватара Джеймса Кэмерона.</p>
-      <div class="ref-image"><p>мой референс</p><img src="https://s10.iimage.su/s/31/uiePFr9xG55rjAHLFHAXeoCbyt6jfmoHlwCXL7LIl.png" alt="Референс"></div>
+      <div class="ref-image"><p>Мой референс</p><img src="https://s10.iimage.su/s/31/uiePFr9xG55rjAHLFHAXeoCbyt6jfmoHlwCXL7LIl.png" alt="Референс"></div>
     `;
 
     const commissionsText = `
       <h3>О заказах</h3>
       <h4>Арт-статус</h4>
-      <table><tr><th>Название</th><th>Статус</th></tr>
+      <table>
+        <tr><th>Название</th><th>Статус</th></tr>
         <tr><td>Коммишены</td><td class="status-open">Открыто</td></tr>
         <tr><td>Кролишен (Catwar)</td><td class="status-closed">Закрыто</td></tr>
         <tr><td>Реквесты</td><td class="status-closed">По желанию</td></tr>
@@ -726,7 +751,11 @@
       const closeBtn = document.createElement('button');
       closeBtn.innerHTML = '✕';
       closeBtn.style.cssText = `position:absolute; top:12px; left:18px; background:none; border:none; font-size:20px; cursor:pointer; color:#a4839e; z-index:10; opacity:0.8;`;
-      closeBtn.onclick = () => { modalRoot.remove(); modalRoot = null; };
+      closeBtn.onclick = () => {
+        modalRoot.remove();
+        modalRoot = null;
+        document.body.classList.remove('modal-open');
+      };
       const rowsDiv = document.createElement('div');
       rowsDiv.style.cssText = `display:flex; flex-direction:column; gap:18px; margin:30px 0 20px;`;
       const prevIdx = (activeCategoryIndex - 1 + categories.length) % categories.length;
@@ -799,6 +828,7 @@
       if (window.innerWidth > 700) box.appendChild(navDiv);
       modalRoot.appendChild(box);
       document.body.appendChild(modalRoot);
+      document.body.classList.add('modal-open');
 
       modalRoot.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; });
       modalRoot.addEventListener('touchend', (e) => {
