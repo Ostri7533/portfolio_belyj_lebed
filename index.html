@@ -11,7 +11,90 @@
       box-sizing: border-box;
     }
 
-    /* Подключение локальных шрифтов */
+    /* Google Fonts — резервный вариант */
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+    /* Подключение локальных шрифтов — полный набор */
+    @font-face {
+      font-family: 'Cormorant Garamond Local';
+      src: url('fonts/CormorantGaramond-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Cormorant Garamond Local';
+      src: url('fonts/CormorantGaramond-Italic.ttf') format('truetype');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Cormorant Garamond Local';
+      src: url('fonts/CormorantGaramond-Light.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Cormorant Garamond Local';
+      src: url('fonts/CormorantGaramond-LightItalic.ttf') format('truetype');
+      font-weight: 300;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Cormorant Garamond Local';
+      src: url('fonts/CormorantGaramond-Medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Cormorant Garamond Local';
+      src: url('fonts/CormorantGaramond-MediumItalic.ttf') format('truetype');
+      font-weight: 500;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Cormorant Garamond Local';
+      src: url('fonts/CormorantGaramond-SemiBold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Cormorant Garamond Local';
+      src: url('fonts/CormorantGaramond-SemiBoldItalic.ttf') format('truetype');
+      font-weight: 600;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Cormorant Garamond Local';
+      src: url('fonts/CormorantGaramond-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Cormorant Garamond Local';
+      src: url('fonts/CormorantGaramond-BoldItalic.ttf') format('truetype');
+      font-weight: 700;
+      font-style: italic;
+      font-display: swap;
+    }
+
     @font-face {
       font-family: 'Pierrot';
       src: url('fonts/Pierrot.ttf') format('truetype');
@@ -20,45 +103,14 @@
       font-display: swap;
     }
 
-    @font-face {
-      font-family: 'Cormorant Garamond';
-      src: url('fonts/CormorantGaramond-Regular.ttf') format('truetype');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: 'Cormorant Garamond';
-      src: url('fonts/CormorantGaramond-Medium.ttf') format('truetype');
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: 'Cormorant Garamond';
-      src: url('fonts/CormorantGaramond-SemiBold.ttf') format('truetype');
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: 'Cormorant Garamond';
-      src: url('fonts/CormorantGaramond-Bold.ttf') format('truetype');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-
+    /* Основной шрифт: сначала локальный, потом Google, потом запасные */
     body {
       background-color: #a4839e;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      font-family: system-ui, sans-serif;
+      font-family: 'Cormorant Garamond Local', 'Cormorant Garamond', system-ui, sans-serif;
       padding: 0;
     }
 
@@ -275,7 +327,7 @@
     }
 
     .main-content {
-      font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+      font-family: 'Cormorant Garamond Local', 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
       color: #2e1a2a;
       line-height: 1.55;
       font-weight: 400;
@@ -472,7 +524,7 @@
     }
 
     .footer p {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond Local', 'Cormorant Garamond', serif;
       font-size: 18px;
       color: #2e1a2a;
     }
@@ -694,7 +746,7 @@
         <tr><td>Реквесты</td><td class="status-closed">По желанию</td></tr>
         <tr><td>Коллабы</td><td class="status-open">С равным скиллом</td></tr>
         <tr><td>Трейды</td><td class="status-open">С равным скиллом</td></tr>
-      </table>
+       </table>
       <h4>Прайс-лист</h4>
       <table>
         <tr><th>Название</th><th>Цена ₽</th></tr>
@@ -702,11 +754,13 @@
         <tr><td>Халфбоди <span class="example-link" data-type="halfbody">[примеры]</span></td><td>1500</td></tr>
         <tr><td>Полнорост <span class="example-link" data-type="fullbody">[примеры]</span></td><td>2000</td></tr>
         <tr><td>Референс <span class="example-link" data-type="refsheet">[примеры]</span></td><td>2000-5000</td></tr>
-        <tr><td>Предмет/медаль/костюм/баннер <span class="example-link" data-type="item">[примеры]</span></td><td>500</td></tr>
+        <tr>
+            
+<td>Предмет/медаль/костюм/баннер <span class="example-link" data-type="item">[примеры]</span></td><td>500</td></tr>
         <tr><td>Фон на локацию <span class="example-link" data-type="background">[примеры]</span></td><td>1500-3000</td></tr>
         <tr><td>Клон <span class="example-link" data-type="clone">[примеры]</span></td><td>2000-3000</td></tr>
         <tr><td>Дизайн <span class="example-link" data-type="design">[примеры]</span></td><td>3000</td></tr>
-      </table>
+       </table>
       <div style="text-align:center; margin:15px 0 20px;"><a href="https://vk.com/albums-235915713" target="_blank" style="color:#a4839e; text-decoration:underline; font-weight:bold;">[Больше примеров в ВК]</a></div>
       
       <h4>Доп. информация</h4>
