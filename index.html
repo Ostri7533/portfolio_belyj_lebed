@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Белый Лебедь (Мерц) || Портфолио</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Подключение локальных шрифтов */
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      src: url('fonts/CormorantGaramond-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      src: url('fonts/CormorantGaramond-Medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      src: url('fonts/CormorantGaramond-SemiBold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      src: url('fonts/CormorantGaramond-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Pierrot';
+      src: url('fonts/pierrot.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    body {
+      background-color: #a4839e;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      font-family: system-ui, sans-serif;
+      padding: 0;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .canvas-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      overflow-x: auto;
+      padding: 10px;
+    }
+
+    .canvas {
+      width: 800px;
+      height: 1325px;
+      background-color: #a4839e;
+      position: relative;
+      border-radius: 0;
+      overflow: visible;
+      flex-shrink: 0;
+      transform: scale(1);
+      transform-origin: center top;
+    }
+
+    @media (max-width: 850px) {
+      .canvas-container {
+        overflow-x: hidden;
+        justify-content: center;
+      }
+      .canvas {
+        transform: scale(0.62);
+      }
+    }
+
+    @media (max-width: 550px) {
+      .canvas {
+        transform: scale(0.52);
+      }
+    }
+
+    @media (max-width: 430px) {
+      .canvas {
+        transform: scale(0.45);
+      }
+    }
+
+    .canvas-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .header {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      right: 25px;
+      height: 350px;
+      background-color: #a4839e;
+      border-radius: 25px;
+      box-shadow: 0 0 25px 0 rgba(48, 5, 40, 0.25);
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .header-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+
+    .header-circle {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      width: 50px;
+      height: 50px;
+      background-color: #a4839e;
+      border-radius: 50%;
+      z-index: 3;
+    }
+
+    .header-text-group {
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .white-swan {
+      font-family: 'Pierrot', 'Georgia', serif;
+      font-size: 92px;
+      color: #320229;
+      line-height: 1;
+      margin: 0;
+    }
+
+    .merz {
+      font-family: 'Pierrot', 'Georgia', serif;
+      font-size: 72px;
+      color: #320229;
+      line-height: 1;
+      margin-top: 8px;
+    }
+
+    .circles-row {
+      position: absolute;
+      top: 400px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      z-index: 2;
+    }
+
+    .circle-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .circle-link:hover {
+      transform: scale(1.05);
+    }
+
+    .circle-item {
+      width: 50px;
+      height: 50px;
+      background-color: #ffefdd;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+    }
+
+    .circle-link:hover .circle-item {
+      background-color: #faead5;
+    }
+
+    .circle-item svg {
+      width: 32px;
+      height: 32px;
+      fill: #a4839e;
+    }
+
+    .main-block-wrapper {
+      position: absolute;
+      left: 25px;
+      top: 475px;
+      width: 650px;
+      height: 700px;
+      border-radius: 25px;
+      box-shadow: 0 0 25px 0 rgba(48, 5, 40, 0.25);
+      z-index: 1;
+      background-color: #ffefdd;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .main-block {
+      height: 100%;
+      width: 100%;
+      overflow-y: scroll;
+      padding: 28px 55px 28px 25px;
+      box-sizing: border-box;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .main-block::-webkit-scrollbar {
+      display: none;
+    }
+
+    .custom-scrollbar {
+      position: absolute;
+      right: 25px;
+      top: 20px;
+      bottom: 20px;
+      width: 5px;
+      background-color: #e2cfd9;
+      z-index: 10;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .custom-scrollbar-thumb {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #b1849f;
+      border-radius: 10px;
+      transition: background-color 0.2s;
+      cursor: grab;
+      min-height: 30px;
+    }
+
+    .custom-scrollbar-thumb:hover {
+      background-color: #9a6c88;
+    }
+
+    .custom-scrollbar-thumb:active {
+      cursor: grabbing;
+    }
+
+    .main-content {
+      font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+      color: #2e1a2a;
+      line-height: 1.55;
+      font-weight: 400;
+      text-align: justify;
+      font-size: 16px;
+    }
+
+    .main-content h3 {
+      font-family: 'Pierrot', 'Georgia', serif;
+      font-size: 26px;
+      margin: 20px 0 12px 0;
+      color: #320229;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    .main-content h4 {
+      font-family: 'Pierrot', 'Georgia', serif;
+      font-size: 20px;
+      margin: 18px 0 10px 0;
+      color: #4a2a3f;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    .main-content p {
+      margin-bottom: 12px;
+    }
+
+    .main-content strong {
+      font-weight: 600;
+      color: #3a1a2c;
+    }
+
+    .main-content ul,
+    .main-content ol {
+      margin: 8px 0 12px 24px;
+      text-align: left;
+    }
+
+    .main-content li {
+      margin-bottom: 4px;
+    }
+
+    .main-content hr {
+      margin: 16px 0;
+      border: none;
+      height: 1px;
+      background-color: #d4c0ce;
+    }
+
+    .main-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 15px;
+    }
+
+    .main-content th,
+    .main-content td {
+      border: 1px solid #c4a6b4;
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .main-content th {
+      background-color: #ecd9e0;
+      font-weight: 600;
+    }
+
+    .status-open {
+      color: #2a7a2a;
+      font-weight: 500;
+    }
+
+    .status-closed {
+      color: #a13a3a;
+      font-weight: 500;
+    }
+
+    .warning {
+      background-color: #faead5;
+      padding: 10px;
+      border-left: 4px solid #b1849f;
+      margin: 16px 0;
+    }
+
+    .ref-image {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .ref-image img {
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .ref-image p {
+      margin-top: 8px;
+      font-family: 'Pierrot', 'Georgia', serif;
+      font-size: 22px;
+      color: #4a2a3f;
+      text-transform: lowercase;
+    }
+    .ref-image p::first-letter {
+      text-transform: uppercase;
+    }
+
+    .anketa-list {
+      list-style-type: circle;
+      margin-left: 24px;
+    }
+
+    .example-link {
+      cursor: pointer;
+      text-decoration: underline;
+      color: #a4839e;
+      transition: 0.2s;
+    }
+
+    .example-link:hover {
+      color: #6a4560;
+    }
+
+    .switches-wrapper {
+      position: absolute;
+      right: 25px;
+      top: 475px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      z-index: 2;
+    }
+
+    .switch-rect {
+      width: 75px;
+      height: 75px;
+      background-color: #ffefdd;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s, opacity 0.2s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.5;
+    }
+
+    .switch-rect.active {
+      opacity: 1;
+      background-color: #f7e8d4;
+    }
+
+    .switch-rect:hover {
+      transform: scale(1.05);
+      background-color: #f7e8d4;
+    }
+
+    .switch-rect:active {
+      transform: scale(0.98);
+    }
+
+    .switch-icon-svg {
+      width: 50px;
+      height: 50px;
+      display: block;
+      color: #a4839e;
+    }
+
+    .switch-icon-svg svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      right: 25px;
+      height: 75px;
+      background-color: #ffefdd;
+      border-radius: 25px;
+      box-shadow: 0 0 25px 0 rgba(48, 5, 40, 0.25);
+      z-index: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .footer p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: #2e1a2a;
+    }
+
+    .footer a {
+      color: #a4839e;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .decor-rectangle {
+      position: absolute;
+      right: 25px;
+      top: 775px;
+      width: 75px;
+      height: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      background-color: #ecd9c6;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .decor-img {
+      width: 110%;
+      height: 110%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+      background-color: #ecd9c6;
+    }
+
+    .strikethrough {
+      text-decoration: line-through;
+    }
+
+    @media (max-width: 850px) {
+      .main-content {
+        font-size: 21px;
+      }
+      .main-content h3 {
+        font-size: 32px;
+      }
+      .main-content h4 {
+        font-size: 26px;
+      }
+      .main-content table {
+        font-size: 19px;
+      }
+      .ref-image p {
+        font-size: 28px;
+      }
+      .footer p {
+        font-size: 22px !important;
+      }
+      .footer a {
+        font-size: 22px !important;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .main-content {
+        font-size: 24px;
+      }
+      .main-content h3 {
+        font-size: 35px;
+      }
+      .main-content h4 {
+        font-size: 29px;
+      }
+      .main-content table {
+        font-size: 21px;
+      }
+      .ref-image p {
+        font-size: 32px;
+      }
+      .footer p {
+        font-size: 26px !important;
+      }
+      .footer a {
+        font-size: 26px !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .main-content {
+        font-size: 26px;
+      }
+      .main-content h3 {
+        font-size: 37px;
+      }
+      .main-content h4 {
+        font-size: 31px;
+      }
+      .main-content table {
+        font-size: 22px;
+      }
+      .ref-image p {
+        font-size: 34px;
+      }
+      .footer p {
+        font-size: 28px !important;
+      }
+      .footer a {
+        font-size: 28px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="canvas-container">
+  <div class="canvas">
+    <div class="canvas-inner">
+      <div class="header">
+        <img class="header-img" src="images/header.png" alt="Header background" crossorigin="anonymous" loading="lazy">
+        <div class="header-circle"></div>
+        <div class="header-text-group">
+          <div class="white-swan">Белый Лебедь</div>
+          <div class="merz">Мерц</div>
+        </div>
+      </div>
+
+      <div class="circles-row">
+        <a href="https://t.me/belyj_lebed" class="circle-link" target="_blank">
+          <div class="circle-item">
+            <svg width="128" height="128" viewBox="0 0 32 32">
+              <path d="M 26.070313 3.996094 C 25.734375 4.011719 25.417969 4.109375 25.136719 4.21875 L 25.132813 4.21875 C 24.847656 4.332031 23.492188 4.902344 21.433594 5.765625 C 19.375 6.632813 16.703125 7.757813 14.050781 8.875 C 8.753906 11.105469 3.546875 13.300781 3.546875 13.300781 L 3.609375 13.277344 C 3.609375 13.277344 3.25 13.394531 2.875 13.652344 C 2.683594 13.777344 2.472656 13.949219 2.289063 14.21875 C 2.105469 14.488281 1.957031 14.902344 2.011719 15.328125 C 2.101563 16.050781 2.570313 16.484375 2.90625 16.722656 C 3.246094 16.964844 3.570313 17.078125 3.570313 17.078125 L 3.578125 17.078125 L 8.460938 18.722656 C 8.679688 19.425781 9.949219 23.597656 10.253906 24.558594 C 10.433594 25.132813 10.609375 25.492188 10.828125 25.765625 C 10.933594 25.90625 11.058594 26.023438 11.207031 26.117188 C 11.265625 26.152344 11.328125 26.179688 11.390625 26.203125 C 11.410156 26.214844 11.429688 26.21875 11.453125 26.222656 L 11.402344 26.210938 C 11.417969 26.214844 11.429688 26.226563 11.441406 26.230469 C 11.480469 26.242188 11.507813 26.246094 11.558594 26.253906 C 12.332031 26.488281 12.953125 26.007813 12.953125 26.007813 L 12.988281 25.980469 L 15.871094 23.355469 L 20.703125 27.0625 L 20.8125 27.109375 C 21.820313 27.550781 22.839844 27.304688 23.378906 26.871094 C 23.921875 26.433594 24.132813 25.875 24.132813 25.875 L 24.167969 25.785156 L 27.902344 6.65625 C 28.007813 6.183594 28.035156 5.742188 27.917969 5.3125 C 27.800781 4.882813 27.5 4.480469 27.136719 4.265625 C 26.769531 4.046875 26.40625 3.980469 26.070313 3.996094 Z M 25.96875 6.046875 C 25.964844 6.109375 25.976563 6.101563 25.949219 6.222656 L 25.949219 6.234375 L 22.25 25.164063 C 22.234375 25.191406 22.207031 25.25 22.132813 25.308594 C 22.054688 25.371094 21.992188 25.410156 21.667969 25.28125 L 15.757813 20.75 L 12.1875 24.003906 L 12.9375 19.214844 C 12.9375 19.214844 22.195313 10.585938 22.59375 10.214844 C 22.992188 9.84375 22.859375 9.765625 22.859375 9.765625 C 22.886719 9.3125 22.257813 9.632813 22.257813 9.632813 L 10.082031 17.175781 L 10.078125 17.15625 L 4.242188 15.191406 L 4.242188 15.1875 C 4.238281 15.1875 4.230469 15.183594 4.226563 15.183594 C 4.230469 15.183594 4.257813 15.171875 4.257813 15.171875 L 4.289063 15.15625 L 4.320313 15.144531 C 4.320313 15.144531 9.53125 12.949219 14.828125 10.71875 C 17.480469 9.601563 20.152344 8.476563 22.207031 7.609375 C 24.261719 6.746094 25.78125 6.113281 25.867188 6.078125 C 25.949219 6.046875 25.910156 6.046875 25.96875 6.046875 Z" />
+            </svg>
+          </div>
+        </a>
+        <a href="https://vk.com/belyj__lebed" class="circle-link" target="_blank">
+          <div class="circle-item">
+            <svg width="128" height="128" viewBox="0 0 24 24">
+              <path d="m23.456 5.784c-.27.849-.634 1.588-1.09 2.259l.019-.03q-.672 1.12-1.605 2.588-.8 1.159-.847 1.2c-.138.173-.234.385-.267.618l-.001.007c.027.212.125.397.268.535l.4.446q3.21 3.299 3.611 4.548c.035.092.055.198.055.309 0 .194-.062.373-.167.52l.002-.003c-.176.181-.422.293-.694.293-.03 0-.061-.001-.09-.004h.004-2.631c-.001 0-.003 0-.005 0-.337 0-.647-.118-.89-.314l.003.002c-.354-.291-.669-.606-.951-.948l-.009-.012q-.691-.781-1.226-1.315-1.782-1.694-2.63-1.694c-.021-.002-.045-.003-.07-.003-.165 0-.319.051-.446.138l.003-.002c-.104.13-.167.298-.167.479 0 .036.002.07.007.105v-.004c-.027.314-.043.679-.043 1.048 0 .119.002.237.005.355v-.017 1.159c.01.047.016.101.016.156 0 .242-.11.458-.282.601l-.001.001c-.387.177-.839.281-1.316.281-.102 0-.202-.005-.301-.014l.013.001c-1.574-.03-3.034-.491-4.275-1.268l.035.02c-1.511-.918-2.763-2.113-3.717-3.525l-.027-.042c-.906-1.202-1.751-2.56-2.471-3.992l-.07-.154c-.421-.802-.857-1.788-1.233-2.802l-.06-.185c-.153-.456-.264-.986-.31-1.535l-.002-.025q0-.758.892-.758h2.63c.024-.002.052-.003.081-.003.248 0 .477.085.658.228l-.002-.002c.2.219.348.488.421.788l.003.012c.484 1.367.997 2.515 1.587 3.615l-.067-.137c.482.97 1.015 1.805 1.623 2.576l-.023-.031q.8.982 1.248.982c.009.001.02.001.032.001.148 0 .277-.08.347-.2l.001-.002c.074-.19.117-.411.117-.641 0-.049-.002-.098-.006-.146v.006-3.879c-.021-.457-.133-.884-.32-1.267l.008.019c-.124-.264-.273-.492-.45-.695l.003.004c-.164-.164-.276-.379-.311-.619l-.001-.006c0-.17.078-.323.2-.423l.001-.001c.121-.111.283-.178.46-.178h.008 4.146c.022-.003.047-.004.073-.004.195 0 .37.088.486.226l.001.001c.103.188.164.413.164.651 0 .038-.002.075-.005.112v-.005 5.173c-.002.024-.003.052-.003.08 0 .184.051.357.139.504l-.002-.004c.073.108.195.178.333.178h.001c.176-.012.336-.07.471-.162l-.003.002c.272-.187.506-.4.709-.641l.004-.005c.607-.686 1.167-1.444 1.655-2.25l.039-.07c.344-.57.716-1.272 1.053-1.993l.062-.147.446-.892c.155-.446.571-.76 1.06-.76.019 0 .038 0 .057.001h-.003 2.631q1.066 0 .8.981z" />
+            </svg>
+          </div>
+        </a>
+        <a href="https://catwar.su/cat739382" class="circle-link" target="_blank">
+          <div class="circle-item">
+            <svg width="128" height="128" viewBox="0 0 256 256">
+              <path d="M189.02051,145.33984A31.35052,31.35052,0,0,1,174.0918,126.606a47.99847,47.99847,0,0,0-92.18262-.00635,31.35,31.35,0,0,1-14.92969,18.74023,44.00739,44.00739,0,0,0,38.11719,79.21094,60.16331,60.16331,0,0,1,45.80664,0,44.00678,44.00678,0,0,0,38.11719-79.21094ZM168,204a19.86485,19.86485,0,0,1-7.80078-1.57568c-.04395-.019-.08887-.0376-.13379-.05616a84.02637,84.02637,0,0,0-64.13086,0c-.04492.01856-.08984.03711-.13379.05616a20.00673,20.00673,0,0,1-17.31445-36.02246c.03515-.01954.07129-.03907.10644-.05909A55.21137,55.21137,0,0,0,104.957,133.29541a23.99908,23.99908,0,0,1,46.08887.00439,55.20367,55.20367,0,0,0,26.36133,33.043c.03515.02.07129.03955.10644.05909A20.00364,20.00364,0,0,1,168,204Zm64-100a24,24,0,1,1-24-24A23.99994,23.99994,0,0,1,232,104ZM48,128a24,24,0,1,1,24-24A23.99994,23.99994,0,0,1,48,128ZM72,56A24,24,0,1,1,96,80,23.99994,23.99994,0,0,1,72,56Zm64,0a24,24,0,1,1,24,24A23.99994,23.99994,0,0,1,136,56Z" />
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <div class="main-block-wrapper">
+        <div class="main-block" id="scrollableContent">
+          <div class="main-content" id="dynamicContent"></div>
+        </div>
+        <div class="custom-scrollbar" id="customScrollbar">
+          <div class="custom-scrollbar-thumb" id="customThumb"></div>
+        </div>
+      </div>
+
+      <div class="switches-wrapper">
+        <div class="switch-rect active" data-section="about" title="Обо мне">
+          <div class="switch-icon-svg">
+            <svg width="128" height="128" fill="currentColor" viewBox="0 0 512 512">
+              <path d="M290.59 192c-20.18 0-106.82 1.98-162.59 85.95V192c0-52.94-43.06-96-96-96-17.67 0-32 14.33-32 32s14.33 32 32 32c17.64 0 32 14.36 32 32v256c0 35.3 28.7 64 64 64h176c8.84 0 16-7.16 16-16v-16c0-17.67-14.33-32-32-32h-32l128-96v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V289.86c-10.29 2.67-20.89 4.54-32 4.54-61.81 0-113.52-44.05-125.41-102.4zM448 96h-64l-64-64v134.4c0 53.02 42.98 96 96 96s96-42.98 96-96V32l-64 64zm-72 80c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16zm80 0c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16z" />
+            </svg>
+          </div>
+        </div>
+        <div class="switch-rect" data-section="commissions" title="О заказах">
+          <div class="switch-icon-svg">
+            <svg width="128" height="128" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M224.9707,19.0293c-22.31836,0-47.14355,12.08593-73.78613,35.9209-17.36133,15.53125-32.36816,33.18457-43.12891,47.09082A64.01933,64.01933,0,0,0,28,164c0,28.56445-14.31641,41.60156-15.5498,42.6709a11.80639,11.80639,0,0,0-3.94532,13.25A12.07044,12.07044,0,0,0,20,228H92a64.01976,64.01976,0,0,0,61.959-80.05615c13.90577-10.76026,31.55909-25.76807,47.09082-43.1294,23.83594-26.6416,35.9209-51.46679,35.9209-73.78515A12.00059,12.00059,0,0,0,224.9707,19.0293ZM92,204H43.28516C48.03027,194.2207,52,180.96875,52,164a40,40,0,1,1,40,40Zm38.21191-91.30908c3.01807-3.79248,6.45508-7.97315,10.23633-12.34863a80.65046,80.65046,0,0,1,15.18848,15.18115c-4.42236,3.83056-8.60156,7.273-12.33594,10.25293A64.54822,64.54822,0,0,0,130.21191,112.69092ZM173.291,99.15234a104.74491,104.74491,0,0,0-16.48047-16.47265c3.34228-3.34473,6.81006-6.65235,10.376-9.84278,15.68262-14.03027,30.42676-23.30175,43.42481-27.39941C204.85352,63.93066,189.37158,83.09717,173.291,99.15234Z" />
+            </svg>
+          </div>
+        </div>
+        <div class="switch-rect" data-section="howto" title="Как заказать">
+          <div class="switch-icon-svg">
+            <svg width="128" height="128" fill="currentColor" viewBox="0 0 52 52">
+              <path d="M48,6.5C48,5.7,47.3,5,46.5,5h-41C4.7,5,4,5.7,4,6.5v3C4,10.3,4.7,11,5.5,11h41c0.8,0,1.5-0.7,1.5-1.5V6.5z" />
+              <path d="M48,18.5c0-0.8-0.7-1.5-1.5-1.5h-41C4.7,17,4,17.7,4,18.5v3C4,22.3,4.7,23,5.5,23h41c0.8,0,1.5-0.7,1.5-1.5 V18.5z" />
+              <path d="M48,42.5c0-0.8-0.7-1.5-1.5-1.5h-41C4.7,41,4,41.7,4,42.5v3C4,46.3,4.7,47,5.5,47h41c0.8,0,1.5-0.7,1.5-1.5 V42.5z" />
+              <path d="M48,30.5c0-0.8-0.7-1.5-1.5-1.5h-41C4.7,29,4,29.7,4,30.5v3C4,34.3,4.7,35,5.5,35h41c0.8,0,1.5-0.7,1.5-1.5 V30.5z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>Дизайн by <a href="https://ostri7533.github.io/me/" target="_blank">Ostri7533</a></p>
+      </div>
+
+      <div class="decor-rectangle">
+        <img class="decor-img" src="images/decorative.png" alt="Decorative vertical" crossorigin="anonymous" loading="lazy">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const aboutText = `
+      <h3>Обо мне</h3>
+      <p>В интернете я известна под псевдонимом Мерц/Белый Лебедь, в реальной жизни зовут Юлия. Я 2006 года, родной город Брянск, но учусь в Москве на живописи. До этого закончила художку на красный диплом и два года ходила ради подготовки к вступительным испытаниям. Мой творческий путь начинался с рисования мышкой в Paint и выкладывания работ в одноклассники. В 10 лет мне подарили мой первый графический планшет, после чего я стала рисовать в PaintTool SAI.</p>
+      <p>В нынешнее время рисую в PaintTool SAI Ver.2 на планшете Wacom Intuos Pro M, а также в IbisPaint X на Samsung Galaxy Tab S10 Lite.</p>
+      <p>Важно понимать, что я цифровой художник, работающий на аудиторию Catwar. Состою в сайтовой команде художников. На варе я с конца 2016 года, могли знать как Масленицу/Мракоблик. Сейчас живой персонаж Зимнее Солнцестояние. Все время существую в ВТ, в других вселенных бывала, но только до появления ВТ.</p>
+      <p>Люблю инди-рок, альтернативу, просто рок, пост-панк, фолк-рок, инди-фолк. Увлекаюсь КВ, МЛП, немного КХ (в большей степени заброшено), Майншилдом, Лололошкой. Слежу за веб-анимацией, в том числе российской. Играю в Майнкрафт. VOTV, Зайчик, spore, catwar и иногда в pony town. Обожаю вселенную Аватара Джеймса Кэмерона.</p>
+      <div class="ref-image"><p>Мой референс</p><img src="images/my_referens.png" alt="Референс"></div>
+    `;
+
+    const commissionsText = `
+      <h3>О заказах</h3>
+      <h4>Арт-статус</h4>
+      <tr>
+        <tr><th>Название</th><th>Статус</th></tr>
+        <tr><td>Коммишены</td><td class="status-open">Открыто</td></tr>
+        <tr><td>Кролишены</td><td class="status-closed">Закрыто</td></tr>
+        <tr><td>Реквесты</td><td class="status-closed">По желанию</td></tr>
+        <tr><td>Коллабы</td><td class="status-open">С равным скиллом</td></tr>
+        <tr><td>Трейды</td><td class="status-open">С равным скиллом</td></tr>
+      </table>
+      <h4>Прайс-лист</h4>
+      <table>
+        <tr><th>Название</th><th>Цена ₽</th></tr>
+        <tr><td>Хедшот <span class="example-link" data-type="headshot">[примеры]</span></td><td>1000</td></tr>
+        <tr><td>Халфбоди <span class="example-link" data-type="halfbody">[примеры]</span></td><td>1500</td></tr>
+        <tr><td>Полнорост <span class="example-link" data-type="fullbody">[примеры]</span></td><td>2000</td></tr>
+        <tr><td>Референс <span class="example-link" data-type="refsheet">[примеры]</span></td><td>2000-5000</td></tr>
+        <tr><td>Предмет/медаль/костюм/баннер <span class="example-link" data-type="item">[примеры]</span></td><td>500</td></tr>
+        <tr><td>Фон на локацию <span class="example-link" data-type="background">[примеры]</span></td><td>1500-3000</td></tr>
+        <tr><td>Клон <span class="example-link" data-type="clone">[примеры]</span></td><td>2000-3000</td></tr>
+        <tr><td>Дизайн <span class="example-link" data-type="design">[примеры]</span></td><td>3000</td></tr>
+      </table>
+      <div style="text-align:center; margin:15px 0 20px;"><a href="https://vk.com/albums-235915713" target="_blank" style="color:#a4839e; text-decoration:underline; font-weight:bold;">[Больше примеров в ВК]</a></div>
+      
+      <h4>Доп. информация</h4>
+      <p><strong>Референс:</strong> цена складывается из количества ракурсов персонажа на реф листе, наличия блока с информацией, дополнительных предметов и одежды. Пока лишь у меня нет примеров того, какой референс сколько будет стоить, но референс с вкладки "Обо мне" - пример за 3000 рублей.</p>
+      <p><strong>Предмет/медаль/костюм/баннер:</strong> фиксированная цена, от сложности она не меняется. Данный раздел с той же ценовой категорией может пополняться похожим небольшим форматом.</p>
+      <p><strong>Фон на локацию:</strong> природный пейзаж с минимум сложных предметов стоит дешевле, чем городской пейзаж или работа, где много техники и любых других предметов, созданных человеком.</p>
+      <p><strong>Клон:</strong> цена зависит от количества и сложности частей тела, предметов, одежды и фонов. Не более 2000 рублей будет стоит клон со всеми частями тел из КО CatWar или любой другой клон с минимум количеством частями тел и без фона.</p>
+      <p><strong>Дизайн:</strong> у меня есть опыт создания дизайнов, но в нынешнем стиле я делала только один дизайн (исправляюсь!). Буду рада личным дизайнам, а не сезонным.</p>
+      <p>Если вы не нашли нужный формат работы, то можете уточнить в лс ВК с информацией о том, что вы хотите заказать.</p>
+      
+      <h4>Наценки</h4>
+      <ul><li>За второго персонажа +50% того же формата.</li><li>За фон +500-1500 в зависимости от сложности (касается хедшота, халфбоди, полнороста, клона).</li><li>За одежду на антро 500-1500 в зависимости от количества. Мелкие детали вроде украшений или простых головных уборов не считаются.</li><li>За крупные правки (пример: при готовом лайне просите полностью поменять позу) от 100 рублей в зависимости от количества. Мелкие правки не считаю.</li></ul>
+      <p>Если есть сомнения, буду ли я брать плату за какие-то вещи или не понятна грань перехода из несложного в сложное, то пишите в лс ТГК/ВК, со всем готова разобраться.</p>
+      
+      <h4>Что рисую</h4>
+      <p><strong>Рисую:</strong> Котов, пони, драконов, их антро и чиби версии. Могу попробовать других животных, но не обещаю, что соглашусь.<br>
+      <strong>Не рисую:</strong> людей, нсфв, фетиши, сильные намеки на романтические отношения (к этому НЕ относятся варианты поз и действий, которые могут делать друзья). Я не буду добавлять изображения, содержащие символику или любые другие элементы, которые могут нарушать российские законы.</p>
+      
+      <h4>Оплата</h4>
+      <p>Оплата производиться на сбер. Предоплата 50% (100% по желанию). Если не буду успевать по дедлайну - верну деньги/сделаю скидку.</p>
+      
+      <h4>Дедлайн</h4>
+      <p>Стандартно дедлайн от 2 недель до трёх месяцев, в зависимости от сложности работы. Дедлайн считается с дня, когда вы оплатили предоплату после скинутого скетча! Если же у вас есть четкий дедлайн, то указывайте его сразу.</p>
+      
+      <h4>Слоты</h4>
+      <p>Работаю по слотам. Слоты открываю периодически в ТГК.</p>
+      
+      <h4><span class="strikethrough">Кролишены</span> Арты за уникальные предметы</h4>
+      <p>Периодически я делаю посты в CatWar с аукционном на ючи в кролях. Также вы можете заказать у меня любой из форматов работы за уникальные предметы. У меня есть <a href="https://docs.google.com/spreadsheets/d/13HwFOlzN6mUDlMUxCOvxNf9s8wDVaQ7slk5phceF3rE/edit?gid=0#gid=0" target="_blank" style="color:#a4839e; text-decoration:underline;">таблица</a>, в которой указаны уникальные предметы, которые у меня уже есть и которые мне интересны. Не нужно предлагать те, которые у меня есть, но можно предложить те, которые отсутствуют в списке интересующих меня. За крупный формат в маленьком количестве мелкобалл не беру! Повторки не нужны. Можете предлагать комбо из мелкобалла и высокобалла. За крупный формат иногда может хватить одного высокобалла, но тут все индивидуально.</p>
+      
+      <h4>Соглашение</h4>
+      <p>Данное соглашение это лишь договоренность перед началом работы, которую вам необходимо прочитать, чтобы не задавать лишних вопросов.</p>
+      <ul><li>Реснички в 3/4 часть стиля, периодически я рисую их, так что убрать не смогу. Ресницы женским персонажам рисую только антро и фурри версиям разных видов, поням рисую их в любом виде.</li><li>Палитра персонажа может быть изменена в теплый оттенок, черный, белый и оттенки серого могут быть слегка изменены, так как я не использую их чистый оттенок (искл: референс).</li><li>Если вы заказываете арт без фона, то я всегда рисую что-либо на заднем фоне для заполнения пространства/заливаю цветом. Если нужна работа на png фоне, то об этом стоит написать при заказе работы.</li><li>Уже готовая работа может быть использована мной во всех моих соц-сетях.</li></ul>
+    `;
+
+    const howtoText = `
+      <h3>Как сделать заказ?</h3>
+      <p>Ознакомьтесь с информацией в этой вкладке. Если видите открытый слот в ТГК, то откройте <a href="https://vk.com/im/convo/-235915713?entrypoint=community_page&tab=all" target="_blank" style="color:#a4839e; text-decoration:underline;">сообщения в ВК</a>/на варе (на варе обязательно пишите тему: заказ). Заполните анкету. Приветствуется четкое тз с референсами (и реф персонажа и картинки-референсы).</p>
+      <h4>Анкета:</h4>
+      <ul class="anketa-list">
+        <li>Формат работы (хэд/халф/полнорост или др.) + дополнительная информация (доп. информация предполагает пункты из наценок).</li>
+        <li>Информация. Подробно опишите позу персонаж(а/ей), если есть доп. информация, то описывать ее подробнее здесь/опишите то, что вы хотите видеть на фоне/предмете/костюме/медали.</li>
+        <li>Ознакомились ли вы с соглашением (да/нет).</li>
+        <li>Референс(ы) персонаж(а/жей)/окрас(ы) на прозрачном фоне, референсы поз, эмоций, одежды и т. п., НО КАРТИНКИ ФАЙЛАМИ, ВК СИЛЬНО СЖИМАЕТ КАЧЕСТВО!!! (пункт не нумеруется, вы сразу скидываете фотографии, можно отдельным сообщением, тут как вам удобней).</li>
+      </ul>
+      <h4>Пример:</h4>
+      <ul class="anketa-list">
+        <li>Фулл с фоном.</li>
+        <li>Кот сидит на берегу реки и пьет воду, пейзаж летний, все происходит в лесу, кот в 3/4.</li>
+        <li>Да.</li>
+        <li><em>*далее идут фотографии персонажа и референсов для фона*.</em></li>
+      </ul>
+      <hr><p>Будьте терпеливы, если мне понадобиться ответить позже я обязательно сообщу. Имейте в виду, ложь в 3 пункте будет лишь на вашей совести, при возникновении конфликта я оставляю за собой право прекратить работу над заказом и вернуть 50% оплаты, если работа была частично сделана.</p>
+    `;
+
+    const defaultContent = `<h3>Белый Лебедь · Мерц</h3><p>Выберите раздел справа.</p>`;
+
+    const gallerySets = {
+      headshot: ["images/head_1.png","images/head_2.jpg","images/head_3.jpg"],
+      halfbody: ["images/half_1.png","images/half_2.png","images/half_3.png"],
+      fullbody: ["images/polnorost_1.png","images/polnorost_2.png","images/polnorost_3.png"],
+      refsheet: ["images/ref_1.png","images/ref_2.png","images/ref_3.png"],
+      item: ["images/var_1.png","images/var_2.png","images/var_3.png"],
+      background: ["images/fon_1.png","images/fon_2.png","images/fon_3.png"],
+      clone: ["images/clon_1.png"],
+      design: ["images/diz_1.jpg","images/diz_2.jpg","images/diz_3.jpg"]
+    };
+
+    const categories = Object.keys(gallerySets);
+    let activeCategoryIndex = 0;
+    let modalRoot = null;
+    let touchStartY = 0;
+
+    const allImagesFlat = [];
+    for (let cat of categories) {
+      for (let img of gallerySets[cat]) allImagesFlat.push(img);
+    }
+
+    function openGalleryByType(type) {
+      const idx = categories.indexOf(type);
+      if (idx !== -1) activeCategoryIndex = idx;
+      renderGalleryModal();
+    }
+
+    function renderGalleryModal() {
+      if (modalRoot) modalRoot.remove();
+      modalRoot = document.createElement('div');
+      modalRoot.style.cssText = `position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(5px); z-index:10000; display:flex; align-items:center; justify-content:center;`;
+      
+      const box = document.createElement('div');
+      box.style.cssText = `background:#ffefdd; border-radius:35px; width:90%; max-width:800px; padding:25px 20px 20px 20px; position:relative; margin:20px;`;
+      
+      const closeBtn = document.createElement('button');
+      closeBtn.innerHTML = '✕';
+      closeBtn.style.cssText = `position:absolute; top:-15px; right:-15px; width:40px; height:40px; background:#a4839e; border:none; border-radius:50%; font-size:24px; cursor:pointer; color:#ffefdd; z-index:20; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.2);`;
+      closeBtn.onclick = () => {
+        modalRoot.remove();
+        modalRoot = null;
+        document.body.classList.remove('modal-open');
+      };
+      
+      const rowsDiv = document.createElement('div');
+      rowsDiv.style.cssText = `display:flex; flex-direction:column; gap:18px; margin:5px 0 20px;`;
+      
+      const prevIdx = (activeCategoryIndex - 1 + categories.length) % categories.length;
+      const nextIdx = (activeCategoryIndex + 1) % categories.length;
+      const activeCat = categories[activeCategoryIndex];
+      const prevCat = categories[prevIdx];
+      const nextCat = categories[nextIdx];
+
+      function buildRow(catKey, isActive) {
+        const row = document.createElement('div');
+        row.style.cssText = `display:grid; grid-template-columns:repeat(3,1fr); gap:12px; transition:0.2s; ${isActive ? '' : 'opacity:0.45;'}`;
+        const images = gallerySets[catKey];
+        if (catKey === 'clone') {
+          const bigCell = document.createElement('div');
+          bigCell.style.cssText = `grid-column:span 3; aspect-ratio:3/1; background:#ecd9e0; border-radius:20px; overflow:hidden; cursor:pointer; transition:transform 0.2s;`;
+          bigCell.onmouseenter = () => bigCell.style.transform = 'scale(1.01)';
+          bigCell.onmouseleave = () => bigCell.style.transform = 'scale(1)';
+          const imgBig = document.createElement('img');
+          imgBig.src = images[0];
+          imgBig.style.cssText = `width:100%; height:100%; object-fit:cover; display:block;`;
+          imgBig.onclick = () => openFullImageGlobal(findGlobalIndex(catKey, 0));
+          bigCell.appendChild(imgBig);
+          row.appendChild(bigCell);
+        } else {
+          for (let i = 0; i < 3; i++) {
+            const wrap = document.createElement('div');
+            wrap.style.cssText = `aspect-ratio:1/1; background:#ecd9e0; border-radius:20px; overflow:hidden; cursor:pointer; transition:transform 0.2s, box-shadow 0.2s;`;
+            wrap.onmouseenter = () => { wrap.style.transform = 'scale(1.03)'; wrap.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)'; };
+            wrap.onmouseleave = () => { wrap.style.transform = 'scale(1)'; wrap.style.boxShadow = 'none'; };
+            const img = document.createElement('img');
+            img.src = images[i];
+            img.style.cssText = `width:100%; height:100%; object-fit:cover; display:block;`;
+            img.onclick = () => openFullImageGlobal(findGlobalIndex(catKey, i));
+            wrap.appendChild(img);
+            row.appendChild(wrap);
+          }
+        }
+        return row;
+      }
+
+      rowsDiv.appendChild(buildRow(prevCat, false));
+      rowsDiv.appendChild(buildRow(activeCat, true));
+      rowsDiv.appendChild(buildRow(nextCat, false));
+
+      const navDiv = document.createElement('div');
+      navDiv.style.cssText = `position:absolute; left:-65px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:20px;`;
+      const upBtn = document.createElement('button');
+      upBtn.innerHTML = '▲';
+      upBtn.style.cssText = `background:#a4839e; border:none; width:40px; height:40px; border-radius:40px; font-size:24px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
+      upBtn.onclick = (e) => { e.stopPropagation(); activeCategoryIndex = (activeCategoryIndex - 1 + categories.length) % categories.length; renderGalleryModal(); };
+      const downBtn = document.createElement('button');
+      downBtn.innerHTML = '▼';
+      downBtn.style.cssText = `background:#a4839e; border:none; width:40px; height:40px; border-radius:40px; font-size:24px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
+      downBtn.onclick = (e) => { e.stopPropagation(); activeCategoryIndex = (activeCategoryIndex + 1) % categories.length; renderGalleryModal(); };
+      navDiv.appendChild(upBtn);
+      navDiv.appendChild(downBtn);
+
+      box.appendChild(closeBtn);
+      box.appendChild(rowsDiv);
+      
+      if (window.innerWidth > 700) {
+        box.appendChild(navDiv);
+      }
+      
+      modalRoot.appendChild(box);
+      document.body.appendChild(modalRoot);
+      document.body.classList.add('modal-open');
+
+      modalRoot.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; });
+      modalRoot.addEventListener('touchend', (e) => {
+        const diff = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) upBtn.onclick();
+          else downBtn.onclick();
+        }
+      });
+    }
+
+    function findGlobalIndex(catKey, idxInCat) {
+      let globalIdx = 0;
+      for (let cat of categories) {
+        if (cat === catKey) return globalIdx + idxInCat;
+        globalIdx += gallerySets[cat].length;
+      }
+      return 0;
+    }
+
+    function openFullImageGlobal(startIdx) {
+      let currentIdx = startIdx;
+      const total = allImagesFlat.length;
+      const fullWin = document.createElement('div');
+      fullWin.style.cssText = `position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:10001; display:flex; align-items:center; justify-content:center;`;
+      const container = document.createElement('div');
+      container.style.cssText = `background:#ffefdd; border-radius:30px; padding:30px; max-width:85vw; max-height:85vh; position:relative; display:flex; flex-direction:column; align-items:center;`;
+      
+      const closeFull = document.createElement('button');
+      closeFull.innerHTML = '✕';
+      closeFull.style.cssText = `position:absolute; top:-15px; right:-15px; width:40px; height:40px; background:#a4839e; border:none; border-radius:50%; font-size:24px; cursor:pointer; color:#ffefdd; z-index:2; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.2);`;
+      closeFull.onclick = () => fullWin.remove();
+      
+      const imgEl = document.createElement('img');
+      imgEl.src = allImagesFlat[currentIdx];
+      imgEl.style.cssText = `max-width:100%; max-height:65vh; border-radius:20px; object-fit:contain;`;
+      
+      const leftArrow = document.createElement('button');
+      leftArrow.innerHTML = '◀';
+      leftArrow.style.cssText = `position:absolute; left:-65px; top:50%; transform:translateY(-50%); background:#a4839e; border:none; width:50px; height:50px; border-radius:40px; font-size:28px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
+      const rightArrow = document.createElement('button');
+      rightArrow.innerHTML = '▶';
+      rightArrow.style.cssText = `position:absolute; right:-65px; top:50%; transform:translateY(-50%); background:#a4839e; border:none; width:50px; height:50px; border-radius:40px; font-size:28px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
+      
+      const updateImage = () => { imgEl.src = allImagesFlat[currentIdx]; };
+      leftArrow.onclick = (e) => { e.stopPropagation(); currentIdx = (currentIdx - 1 + total) % total; updateImage(); };
+      rightArrow.onclick = (e) => { e.stopPropagation(); currentIdx = (currentIdx + 1) % total; updateImage(); };
+      
+      container.appendChild(closeFull);
+      container.appendChild(imgEl);
+      
+      if (window.innerWidth > 700) {
+        container.appendChild(leftArrow);
+        container.appendChild(rightArrow);
+      }
+      
+      fullWin.appendChild(container);
+      document.body.appendChild(fullWin);
+      
+      const keyboardHandler = (e) => {
+        if (e.key === 'ArrowLeft') { 
+          e.preventDefault();
+          currentIdx = (currentIdx - 1 + total) % total; 
+          updateImage();
+        } else if (e.key === 'ArrowRight') { 
+          e.preventDefault();
+          currentIdx = (currentIdx + 1) % total; 
+          updateImage();
+        } else if (e.key === 'Escape') { 
+          fullWin.remove();
+          window.removeEventListener('keydown', keyboardHandler);
+        }
+      };
+      window.addEventListener('keydown', keyboardHandler);
+    }
+
+    document.addEventListener('click', (e) => {
+      const target = e.target.closest('.example-link');
+      if (target && target.dataset.type) { e.preventDefault(); openGalleryByType(target.dataset.type); }
+    });
+
+    const dynamicDiv = document.getElementById('dynamicContent');
+    const rects = document.querySelectorAll('.switch-rect');
+    const scrollContainer = document.getElementById('scrollableContent');
+    const scrollbar = document.getElementById('customScrollbar');
+    const thumb = document.getElementById('customThumb');
+
+    function updateThumb() {
+      if (!scrollContainer || !thumb) return;
+      const sh = scrollContainer.scrollHeight, ch = scrollContainer.clientHeight;
+      if (sh <= ch) { thumb.style.height = '0'; thumb.style.top = '0'; return; }
+      const trackHeight = scrollbar.clientHeight;
+      const thumbHeight = Math.max(30, (ch / sh) * trackHeight);
+      thumb.style.height = thumbHeight + 'px';
+      const scrollPercent = scrollContainer.scrollTop / (sh - ch);
+      const maxTop = trackHeight - thumbHeight;
+      thumb.style.top = (scrollPercent * maxTop) + 'px';
+    }
+
+    function initCustomScroll() {
+      if (!scrollContainer || !scrollbar || !thumb) return;
+      updateThumb();
+      scrollContainer.addEventListener('scroll', updateThumb);
+      let dragging = false, startY = 0, startTop = 0;
+      thumb.addEventListener('mousedown', (e) => {
+        dragging = true; startY = e.clientY; startTop = parseFloat(thumb.style.top) || 0;
+        document.body.style.userSelect = 'none'; e.preventDefault();
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        let newTop = startTop + (e.clientY - startY);
+        const maxTop = scrollbar.clientHeight - thumb.clientHeight;
+        newTop = Math.max(0, Math.min(newTop, maxTop));
+        scrollContainer.scrollTop = (newTop / maxTop) * (scrollContainer.scrollHeight - scrollContainer.clientHeight);
+        thumb.style.top = newTop + 'px';
+      });
+      window.addEventListener('mouseup', () => { dragging = false; document.body.style.userSelect = ''; });
+      window.addEventListener('resize', updateThumb);
+    }
+
+    const contentMap = { about: aboutText, commissions: commissionsText, howto: howtoText };
+
+    function setActive(section) {
+      rects.forEach(rect => {
+        if (rect.getAttribute('data-section') === section) rect.classList.add('active');
+        else rect.classList.remove('active');
+      });
+    }
+
+    function switchTo(section) {
+      dynamicDiv.innerHTML = contentMap[section] || defaultContent;
+      scrollContainer.scrollTop = 0;
+      setTimeout(updateThumb, 50);
+      setActive(section);
+    }
+
+    rects.forEach(rect => {
+      rect.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const section = rect.getAttribute('data-section');
+        switchTo(section);
+      });
+    });
+
+    switchTo('about');
+    initCustomScroll();
+    setTimeout(updateThumb, 100);
+
+    window.addEventListener('keydown', (e) => {
+      if (modalRoot && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+        e.preventDefault();
+        if (e.key === 'ArrowUp') activeCategoryIndex = (activeCategoryIndex - 1 + categories.length) % categories.length;
+        else activeCategoryIndex = (activeCategoryIndex + 1) % categories.length;
+        renderGalleryModal();
+      }
+    });
+  })();
+</script>
+</body>
+</html>
