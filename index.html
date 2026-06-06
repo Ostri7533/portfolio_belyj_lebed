@@ -14,10 +14,10 @@
     /* Google Fonts — основной и единственный источник для Cormorant Garamond */
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
-    /* Pierrot — только локально с GitHub (он работает нормально) */
+    /* Pierrot — локально с GitHub, путь в нижнем регистре */
     @font-face {
       font-family: 'Pierrot';
-      src: url('fonts/Pierrot.ttf') format('truetype');
+      src: url('fonts/pierrot.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
       font-display: swap;
@@ -841,7 +841,6 @@
       box.appendChild(closeBtn);
       box.appendChild(rowsDiv);
       
-      // Стрелки только на десктопе
       if (window.innerWidth > 700) {
         box.appendChild(navDiv);
       }
@@ -850,7 +849,6 @@
       document.body.appendChild(modalRoot);
       document.body.classList.add('modal-open');
 
-      // Свайпы для мобильных: вертикальные — переключение категорий, горизонтальные — переключение картинок в полноэкранном режиме
       let touchStartX = 0;
       let touchStartY = 0;
       
@@ -864,7 +862,6 @@
         const diffY = e.changedTouches[0].clientY - touchStartY;
         
         if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 50) {
-          // Вертикальный свайп — переключение категорий
           if (diffY > 0) {
             upBtn.onclick();
           } else {
@@ -914,7 +911,6 @@
       container.appendChild(closeFull);
       container.appendChild(imgEl);
       
-      // Стрелки только на десктопе
       if (window.innerWidth > 700) {
         container.appendChild(leftArrow);
         container.appendChild(rightArrow);
@@ -923,7 +919,6 @@
       fullWin.appendChild(container);
       document.body.appendChild(fullWin);
       
-      // Свайпы для мобильных
       let touchStartX = 0;
       fullWin.addEventListener('touchstart', (e) => {
         touchStartX = e.touches[0].clientX;
@@ -941,7 +936,6 @@
         }
       });
       
-      // Клавиатура
       const keyboardHandler = (e) => {
         if (e.key === 'ArrowLeft') { 
           e.preventDefault();
