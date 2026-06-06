@@ -11,110 +11,70 @@
       box-sizing: border-box;
     }
     
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+/* Google Fonts — ОСНОВНОЙ шрифт (ставим первым) */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-Regular.ttf') format('truetype');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
+/* Локальные шрифты — резерв (если Google недоступен) */
+@font-face {
+  font-family: 'Cormorant Garamond Local';
+  src: url('fonts/CormorantGaramond-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-Italic.ttf') format('truetype');
-      font-weight: 400;
-      font-style: italic;
-      font-display: swap;
-    }
+@font-face {
+  font-family: 'Cormorant Garamond Local';
+  src: url('fonts/CormorantGaramond-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-Light.ttf') format('truetype');
-      font-weight: 300;
-      font-style: normal;
-      font-display: swap;
-    }
+@font-face {
+  font-family: 'Cormorant Garamond Local';
+  src: url('fonts/CormorantGaramond-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
 
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-LightItalic.ttf') format('truetype');
-      font-weight: 300;
-      font-style: italic;
-      font-display: swap;
-    }
+@font-face {
+  font-family: 'Cormorant Garamond Local';
+  src: url('fonts/CormorantGaramond-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-Medium.ttf') format('truetype');
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
+@font-face {
+  font-family: 'Cormorant Garamond Local';
+  src: url('fonts/CormorantGaramond-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
 
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-MediumItalic.ttf') format('truetype');
-      font-weight: 500;
-      font-style: italic;
-      font-display: swap;
-    }
+@font-face {
+  font-family: 'Pierrot';
+  src: url('fonts/Pierrot.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-SemiBold.ttf') format('truetype');
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-    }
+/* Основной шрифт для body — сначала Google, потом локальный, потом запасные */
+body {
+  font-family: 'Cormorant Garamond', 'Cormorant Garamond Local', Georgia, 'Times New Roman', serif;
+}
 
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-SemiBoldItalic.ttf') format('truetype');
-      font-weight: 600;
-      font-style: italic;
-      font-display: swap;
-    }
+.main-content {
+  font-family: 'Cormorant Garamond', 'Cormorant Garamond Local', 'Times New Roman', Georgia, serif;
+}
 
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-Bold.ttf') format('truetype');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-BoldItalic.ttf') format('truetype');
-      font-weight: 700;
-      font-style: italic;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: 'Pierrot';
-      src: url('fonts/Pierrot.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    /* Основной шрифт: сначала локальный, потом Google, потом запасные */
-    body {
-      background-color: #a4839e;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      font-family: 'Cormorant Garamond Local', 'Cormorant Garamond', system-ui, sans-serif;
-      padding: 0;
-    }
-
-    body.modal-open {
-      overflow: hidden;
-    }
+.footer p {
+  font-family: 'Cormorant Garamond', 'Cormorant Garamond Local', serif;
+}
 
     .canvas-container {
       display: flex;
