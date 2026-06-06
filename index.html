@@ -676,7 +676,9 @@
         <tr><td>Предмет/медаль/костюм/баннер <span class="example-link" data-type="item">[примеры]</span></td><td>500</td></tr>
         <tr><td>Фон на локацию <span class="example-link" data-type="background">[примеры]</span></td><td>1500-3000</td></tr>
         <tr><td>Клон <span class="example-link" data-type="clone">[примеры]</span></td><td>2000-3000</td></tr>
-        <tr><td>Дизайн <span class="example-link" data-type="design">[примеры]</span></td><td>3000</td></tr>
+        <tr>
+            
+            <td>Дизайн <span class="example-link" data-type="design">[примеры]</span></td><td>3000</td></tr>
       </table>
       <div style="text-align:center; margin:15px 0 20px;"><a href="https://vk.com/albums-235915713" target="_blank" style="color:#a4839e; text-decoration:underline; font-weight:bold;">[Больше примеров в ВК]</a></div>
       
@@ -830,11 +832,22 @@
       const upBtn = document.createElement('button');
       upBtn.innerHTML = '▲';
       upBtn.style.cssText = `background:#a4839e; border:none; width:40px; height:40px; border-radius:40px; font-size:24px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
-      upBtn.onclick = (e) => { e.stopPropagation(); activeCategoryIndex = (activeCategoryIndex - 1 + categories.length) % categories.length; renderGalleryModal(); };
       const downBtn = document.createElement('button');
       downBtn.innerHTML = '▼';
       downBtn.style.cssText = `background:#a4839e; border:none; width:40px; height:40px; border-radius:40px; font-size:24px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
-      downBtn.onclick = (e) => { e.stopPropagation(); activeCategoryIndex = (activeCategoryIndex + 1) % categories.length; renderGalleryModal(); };
+      
+      const changeCategory = (direction) => {
+        if (direction === 'up') {
+          activeCategoryIndex = (activeCategoryIndex - 1 + categories.length) % categories.length;
+        } else {
+          activeCategoryIndex = (activeCategoryIndex + 1) % categories.length;
+        }
+        renderGalleryModal();
+      };
+      
+      upBtn.onclick = (e) => { e.stopPropagation(); changeCategory('up'); };
+      downBtn.onclick = (e) => { e.stopPropagation(); changeCategory('down'); };
+      
       navDiv.appendChild(upBtn);
       navDiv.appendChild(downBtn);
 
@@ -849,23 +862,20 @@
       document.body.appendChild(modalRoot);
       document.body.classList.add('modal-open');
 
-      let touchStartX = 0;
+      // Свайпы для мобильных
       let touchStartY = 0;
       
       modalRoot.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
       });
       
       modalRoot.addEventListener('touchend', (e) => {
-        const diffX = e.changedTouches[0].clientX - touchStartX;
         const diffY = e.changedTouches[0].clientY - touchStartY;
-        
-        if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 50) {
+        if (Math.abs(diffY) > 50) {
           if (diffY > 0) {
-            upBtn.onclick();
+            changeCategory('up');
           } else {
-            downBtn.onclick();
+            changeCategory('down');
           }
         }
       });
