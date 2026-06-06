@@ -11,42 +11,10 @@
       box-sizing: border-box;
     }
 
-    /* Google Fonts — основной источник (нормальной ширины) */
+    /* Google Fonts — основной и единственный источник для Cormorant Garamond */
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
-    /* Локальные шрифты — только как резерв (на случай отсутствия интернета) */
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-Regular.ttf') format('truetype');
-      font-weight: 400;
-      font-style: normal;
-      font-display: fallback;
-    }
-
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-Medium.ttf') format('truetype');
-      font-weight: 500;
-      font-style: normal;
-      font-display: fallback;
-    }
-
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-SemiBold.ttf') format('truetype');
-      font-weight: 600;
-      font-style: normal;
-      font-display: fallback;
-    }
-
-    @font-face {
-      font-family: 'Cormorant Garamond Local';
-      src: url('fonts/CormorantGaramond-Bold.ttf') format('truetype');
-      font-weight: 700;
-      font-style: normal;
-      font-display: fallback;
-    }
-
+    /* Pierrot — только локально с GitHub (он работает нормально) */
     @font-face {
       font-family: 'Pierrot';
       src: url('fonts/Pierrot.ttf') format('truetype');
@@ -55,14 +23,13 @@
       font-display: swap;
     }
 
-    /* Основной шрифт: сначала Google Fonts (нормальный), потом локальный */
     body {
       background-color: #a4839e;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      font-family: 'Cormorant Garamond', 'Cormorant Garamond Local', system-ui, sans-serif;
+      font-family: 'Cormorant Garamond', system-ui, sans-serif;
       padding: 0;
     }
 
@@ -279,7 +246,7 @@
     }
 
     .main-content {
-      font-family: 'Cormorant Garamond', 'Cormorant Garamond Local', 'Times New Roman', Georgia, serif;
+      font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
       color: #2e1a2a;
       line-height: 1.55;
       font-weight: 400;
@@ -476,7 +443,7 @@
     }
 
     .footer p {
-      font-family: 'Cormorant Garamond', 'Cormorant Garamond Local', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-size: 18px;
       color: #2e1a2a;
     }
