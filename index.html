@@ -11,10 +11,38 @@
       box-sizing: border-box;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+    /* Подключение локальных шрифтов */
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      src: url('fonts/CormorantGaramond-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      src: url('fonts/CormorantGaramond-Medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      src: url('fonts/CormorantGaramond-SemiBold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Cormorant Garamond';
+      src: url('fonts/CormorantGaramond-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
     @font-face {
       font-family: 'Pierrot';
-      src: url('https://files.catbox.moe/mtl4wq.ttf') format('truetype');
+      src: url('fonts/pierrot.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
       font-display: swap;
@@ -399,7 +427,6 @@
       background-color: #f7e8d4;
     }
 
-    /* При наведении — увеличиваем */
     .switch-rect:hover {
       transform: scale(1.05);
       background-color: #f7e8d4;
@@ -427,7 +454,7 @@
       bottom: 25px;
       left: 25px;
       right: 25px;
-      height: 100px;
+      height: 75px;
       background-color: #ffefdd;
       border-radius: 25px;
       box-shadow: 0 0 25px 0 rgba(48, 5, 40, 0.25);
@@ -481,7 +508,6 @@
       background-color: #ecd9c6;
     }
 
-    /* Зачёркнутый текст */
     .strikethrough {
       text-decoration: line-through;
     }
@@ -564,7 +590,7 @@
   <div class="canvas">
     <div class="canvas-inner">
       <div class="header">
-        <img class="header-img" src="https://s10.iimage.su/s/01/gUbJZzvxsWMWRrGLed079A6K9uLOPORbrSBj2vCGv.png" alt="Header background" crossorigin="anonymous" loading="lazy">
+        <img class="header-img" src="images/header.png" alt="Header background" crossorigin="anonymous" loading="lazy">
         <div class="header-circle"></div>
         <div class="header-text-group">
           <div class="white-swan">Белый Лебедь</div>
@@ -637,7 +663,7 @@
       </div>
 
       <div class="decor-rectangle">
-        <img class="decor-img" src="https://s10.iimage.su/s/01/gGHt4ODxWhR0KUZ8Hte5y8SLP9tDmD6Rb5P1I45U9.png" alt="Decorative vertical" crossorigin="anonymous" loading="lazy">
+        <img class="decor-img" src="images/decorative.png" alt="Decorative vertical" crossorigin="anonymous" loading="lazy">
       </div>
     </div>
   </div>
@@ -651,13 +677,13 @@
       <p>В нынешнее время рисую в PaintTool SAI Ver.2 на планшете Wacom Intuos Pro M, а также в IbisPaint X на Samsung Galaxy Tab S10 Lite.</p>
       <p>Важно понимать, что я цифровой художник, работающий на аудиторию Catwar. Состою в сайтовой команде художников. На варе я с конца 2016 года, могли знать как Масленицу/Мракоблик. Сейчас живой персонаж Зимнее Солнцестояние. Все время существую в ВТ, в других вселенных бывала, но только до появления ВТ.</p>
       <p>Люблю инди-рок, альтернативу, просто рок, пост-панк, фолк-рок, инди-фолк. Увлекаюсь КВ, МЛП, немного КХ (в большей степени заброшено), Майншилдом, Лололошкой. Слежу за веб-анимацией, в том числе российской. Играю в Майнкрафт. VOTV, Зайчик, spore, catwar и иногда в pony town. Обожаю вселенную Аватара Джеймса Кэмерона.</p>
-      <div class="ref-image"><p>Мой референс</p><img src="https://s10.iimage.su/s/31/uiePFr9xG55rjAHLFHAXeoCbyt6jfmoHlwCXL7LIl.png" alt="Референс"></div>
+      <div class="ref-image"><p>Мой референс</p><img src="images/my_referens.png" alt="Референс"></div>
     `;
 
     const commissionsText = `
       <h3>О заказах</h3>
       <h4>Арт-статус</h4>
-      <table>
+      <tr>
         <tr><th>Название</th><th>Статус</th></tr>
         <tr><td>Коммишены</td><td class="status-open">Открыто</td></tr>
         <tr><td>Кролишены</td><td class="status-closed">Закрыто</td></tr>
@@ -735,14 +761,14 @@
     const defaultContent = `<h3>Белый Лебедь · Мерц</h3><p>Выберите раздел справа.</p>`;
 
     const gallerySets = {
-      headshot: ["https://s10.iimage.su/s/31/uLuAQxmxz9uN7YbNwrzK7dEsJMlKOLg9L79JMsuTF.png","https://s10.iimage.su/s/31/uIAhgSoxFB9YQveRanI2MfI3eEQGbvXQJ0D5bPWVD.jpg","https://s10.iimage.su/s/31/uKEabtZxUtNOIHhcUlMBHlF5Ame6zwFo9nkWymWpl.jpg"],
-      halfbody: ["https://s10.iimage.su/s/31/u02Coe9x9Vf4aI42rpspVlBiIGKLm4M82fTHVCwB7.png","https://s10.iimage.su/s/31/uaAELArxpCyT4rzJozRYuyaqNjsrB2CW4jc0c3l3Y.png","https://s10.iimage.su/s/31/u3BU5ctxZnCpbVubzrGaIzbeKuC2Iqg88Ap9uhoWp.png"],
-      fullbody: ["https://s10.iimage.su/s/31/u7morpGxFe8UHEacmJviyhJTIlAWPycovK3jYD76P.png","https://s10.iimage.su/s/31/u5l6WU0xJU8Lpq4Rprztb9AyK8dTmciCG2lScWpfc.png","https://s10.iimage.su/s/31/uFttrL9xwli0BSlHpQRkG7g6pdPkKjiLdOQq0nlsS.png"],
-      refsheet: ["https://s10.iimage.su/s/31/uf7onXUxvb8qCkleFZ0APelqaQ1yBL94H7pE3dCm0.png","https://s10.iimage.su/s/31/u2nLkysxqY1zOGThm0umFevpBtWfg7o58TDFkVfar.png","https://s10.iimage.su/s/31/ujhNrlvxI1R04XFcshDdYz2EZwQmS27SBBPZaWVJJ.png"],
-      item: ["https://s10.iimage.su/s/31/uD7CcoDxizI3TLF6cIJbCQ0mOOlJtorfF7OELMHhc.png","https://s10.iimage.su/s/31/uWdG77ixNm3DmysFLEXApEGKe0mz8hW58MjIa1B9E.png","https://s10.iimage.su/s/31/uQ2dkB4xudpaNbUy1sApzT3z8B52SsdflZi0QiFz5.png"],
-      background: ["https://s10.iimage.su/s/31/uWML3R2xsD0lkfdA9AVGtBSol19ca1mEsVYW0kTEc.png","https://s10.iimage.su/s/31/uvo72TJxMnCDrDpOcyRJcpqDtOi7eZFOzAX4q68WT.png","https://s10.iimage.su/s/31/uTRSHF7x3E8f4BJ5D3NYmsMealPJQiP0WFUztLc1s.png"],
-      clone: ["https://s10.iimage.su/s/31/uY2d5ncxjH5OGtRzogV6UqKzaOEakoedrdznBl0oB.png"],
-      design: ["https://s10.iimage.su/s/31/u9l0xvQxGC0pv6ELrwy5AyJmXcXn5jzR1iLwHDf2J.jpg","https://s10.iimage.su/s/31/unESMTExbUzktmADs2YsAnVzIDRjV4zJF7fWXDhc6.jpg","https://s10.iimage.su/s/31/uNj4XxcxmeLFUzcYrgDzPnBGu5JbXyjW7ho7QjfUl.jpg"]
+      headshot: ["images/head_1.png","images/head_2.jpg","images/head_3.jpg"],
+      halfbody: ["images/half_1.png","images/half_2.png","images/half_3.png"],
+      fullbody: ["images/polnorost_1.png","images/polnorost_2.png","images/polnorost_3.png"],
+      refsheet: ["images/ref_1.png","images/ref_2.png","images/ref_3.png"],
+      item: ["images/var_1.png","images/var_2.png","images/var_3.png"],
+      background: ["images/fon_1.png","images/fon_2.png","images/fon_3.png"],
+      clone: ["images/clon_1.png"],
+      design: ["images/diz_1.jpg","images/diz_2.jpg","images/diz_3.jpg"]
     };
 
     const categories = Object.keys(gallerySets);
@@ -769,12 +795,9 @@
       const box = document.createElement('div');
       box.style.cssText = `background:#ffefdd; border-radius:35px; width:90%; max-width:800px; padding:25px 20px 20px 20px; position:relative; margin:20px;`;
       
-      // Крестик закрытия на фиолетовом фоне, справа сверху, чуть вынесен
       const closeBtn = document.createElement('button');
       closeBtn.innerHTML = '✕';
-      closeBtn.style.cssText = `position:absolute; top:-15px; right:-15px; width:40px; height:40px; background:#a4839e; border:none; border-radius:50%; font-size:24px; cursor:pointer; color:#ffefdd; z-index:20; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.2); transition:transform 0.2s;`;
-      closeBtn.onmouseenter = () => closeBtn.style.transform = 'scale(1.05)';
-      closeBtn.onmouseleave = () => closeBtn.style.transform = 'scale(1)';
+      closeBtn.style.cssText = `position:absolute; top:-15px; right:-15px; width:40px; height:40px; background:#a4839e; border:none; border-radius:50%; font-size:24px; cursor:pointer; color:#ffefdd; z-index:20; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.2);`;
       closeBtn.onclick = () => {
         modalRoot.remove();
         modalRoot = null;
@@ -826,28 +849,22 @@
       rowsDiv.appendChild(buildRow(activeCat, true));
       rowsDiv.appendChild(buildRow(nextCat, false));
 
-      // Навигационные стрелки (боковые) — скрываем на мобильных, отодвинуты от блока
       const navDiv = document.createElement('div');
-      navDiv.style.cssText = `position:absolute; left:-55px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:20px;`;
+      navDiv.style.cssText = `position:absolute; left:-65px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:20px;`;
       const upBtn = document.createElement('button');
       upBtn.innerHTML = '▲';
-      upBtn.style.cssText = `background:#a4839e; border:none; width:40px; height:40px; border-radius:40px; font-size:24px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center; transition:transform 0.2s;`;
-      upBtn.onmouseenter = () => upBtn.style.transform = 'scale(1.05)';
-      upBtn.onmouseleave = () => upBtn.style.transform = 'scale(1)';
-      upBtn.onclick = () => { activeCategoryIndex = (activeCategoryIndex - 1 + categories.length) % categories.length; renderGalleryModal(); };
+      upBtn.style.cssText = `background:#a4839e; border:none; width:40px; height:40px; border-radius:40px; font-size:24px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
+      upBtn.onclick = (e) => { e.stopPropagation(); activeCategoryIndex = (activeCategoryIndex - 1 + categories.length) % categories.length; renderGalleryModal(); };
       const downBtn = document.createElement('button');
       downBtn.innerHTML = '▼';
-      downBtn.style.cssText = `background:#a4839e; border:none; width:40px; height:40px; border-radius:40px; font-size:24px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center; transition:transform 0.2s;`;
-      downBtn.onmouseenter = () => downBtn.style.transform = 'scale(1.05)';
-      downBtn.onmouseleave = () => downBtn.style.transform = 'scale(1)';
-      downBtn.onclick = () => { activeCategoryIndex = (activeCategoryIndex + 1) % categories.length; renderGalleryModal(); };
+      downBtn.style.cssText = `background:#a4839e; border:none; width:40px; height:40px; border-radius:40px; font-size:24px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
+      downBtn.onclick = (e) => { e.stopPropagation(); activeCategoryIndex = (activeCategoryIndex + 1) % categories.length; renderGalleryModal(); };
       navDiv.appendChild(upBtn);
       navDiv.appendChild(downBtn);
 
       box.appendChild(closeBtn);
       box.appendChild(rowsDiv);
       
-      // Добавляем стрелки только на десктопе
       if (window.innerWidth > 700) {
         box.appendChild(navDiv);
       }
@@ -885,9 +902,7 @@
       
       const closeFull = document.createElement('button');
       closeFull.innerHTML = '✕';
-      closeFull.style.cssText = `position:absolute; top:-15px; right:-15px; width:40px; height:40px; background:#a4839e; border:none; border-radius:50%; font-size:24px; cursor:pointer; color:#ffefdd; z-index:2; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.2); transition:transform 0.2s;`;
-      closeFull.onmouseenter = () => closeFull.style.transform = 'scale(1.05)';
-      closeFull.onmouseleave = () => closeFull.style.transform = 'scale(1)';
+      closeFull.style.cssText = `position:absolute; top:-15px; right:-15px; width:40px; height:40px; background:#a4839e; border:none; border-radius:50%; font-size:24px; cursor:pointer; color:#ffefdd; z-index:2; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.2);`;
       closeFull.onclick = () => fullWin.remove();
       
       const imgEl = document.createElement('img');
@@ -896,25 +911,14 @@
       
       const leftArrow = document.createElement('button');
       leftArrow.innerHTML = '◀';
-      leftArrow.style.cssText = `position:absolute; left:-55px; top:50%; transform:translateY(-50%); background:#a4839e; border:none; width:50px; height:50px; border-radius:40px; font-size:28px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center; transition:transform 0.2s;`;
-      leftArrow.onmouseenter = () => leftArrow.style.transform = 'scale(1.05)';
-      leftArrow.onmouseleave = () => leftArrow.style.transform = 'scale(1)';
+      leftArrow.style.cssText = `position:absolute; left:-65px; top:50%; transform:translateY(-50%); background:#a4839e; border:none; width:50px; height:50px; border-radius:40px; font-size:28px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
       const rightArrow = document.createElement('button');
       rightArrow.innerHTML = '▶';
-      rightArrow.style.cssText = `position:absolute; right:-55px; top:50%; transform:translateY(-50%); background:#a4839e; border:none; width:50px; height:50px; border-radius:40px; font-size:28px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center; transition:transform 0.2s;`;
-      rightArrow.onmouseenter = () => rightArrow.style.transform = 'scale(1.05)';
-      rightArrow.onmouseleave = () => rightArrow.style.transform = 'scale(1)';
+      rightArrow.style.cssText = `position:absolute; right:-65px; top:50%; transform:translateY(-50%); background:#a4839e; border:none; width:50px; height:50px; border-radius:40px; font-size:28px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
       
       const updateImage = () => { imgEl.src = allImagesFlat[currentIdx]; };
-      leftArrow.onclick = () => { currentIdx = (currentIdx - 1 + total) % total; updateImage(); };
-      rightArrow.onclick = () => { currentIdx = (currentIdx + 1) % total; updateImage(); };
-      
-      const keyboardHandler = (e) => {
-        if (e.key === 'ArrowLeft') { leftArrow.onclick(); e.preventDefault(); }
-        else if (e.key === 'ArrowRight') { rightArrow.onclick(); e.preventDefault(); }
-        else if (e.key === 'Escape') fullWin.remove();
-      };
-      window.addEventListener('keydown', keyboardHandler);
+      leftArrow.onclick = (e) => { e.stopPropagation(); currentIdx = (currentIdx - 1 + total) % total; updateImage(); };
+      rightArrow.onclick = (e) => { e.stopPropagation(); currentIdx = (currentIdx + 1) % total; updateImage(); };
       
       container.appendChild(closeFull);
       container.appendChild(imgEl);
@@ -926,7 +930,22 @@
       
       fullWin.appendChild(container);
       document.body.appendChild(fullWin);
-      fullWin.addEventListener('keydown', keyboardHandler);
+      
+      const keyboardHandler = (e) => {
+        if (e.key === 'ArrowLeft') { 
+          e.preventDefault();
+          currentIdx = (currentIdx - 1 + total) % total; 
+          updateImage();
+        } else if (e.key === 'ArrowRight') { 
+          e.preventDefault();
+          currentIdx = (currentIdx + 1) % total; 
+          updateImage();
+        } else if (e.key === 'Escape') { 
+          fullWin.remove();
+          window.removeEventListener('keydown', keyboardHandler);
+        }
+      };
+      window.addEventListener('keydown', keyboardHandler);
     }
 
     document.addEventListener('click', (e) => {
@@ -994,8 +1013,6 @@
         e.stopPropagation();
         const section = rect.getAttribute('data-section');
         switchTo(section);
-        rect.style.transform = 'scale(0.98)';
-        setTimeout(() => { rect.style.transform = ''; }, 150);
       });
     });
 
