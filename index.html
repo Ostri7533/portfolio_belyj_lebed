@@ -12,7 +12,6 @@
       box-sizing: border-box;
     }
 
-    /* Google Fonts + кастомный шрифт */
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
     @font-face {
@@ -185,7 +184,6 @@
       font-weight: 500;
       letter-spacing: -0.2px;
     }
-    /* Заголовки работ (Хедшот, Халфбоди...) — обычный шрифт */
     .main-content h4 {
       font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
       font-size: 22px;
@@ -195,7 +193,6 @@
     }
     .main-content p { margin-bottom: 14px; }
     
-    /* Разделы (Коммишены, Кролишены...) и статусы — Pierrot, крупные */
     .main-content strong, .status-open-custom, .status-closed-custom {
       font-family: 'Pierrot', 'Georgia', serif;
       font-weight: 500;
@@ -215,7 +212,6 @@
     .status-open-custom { color: #2a7a2a; }
     .status-closed-custom { color: #a13a3a; }
     
-    /* Жирный текст внутри абзацев (Рисую:, Не рисую:) — обычный шрифт */
     .main-content p strong {
       font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
       font-size: 1em;
@@ -234,11 +230,12 @@
       align-items: center;
       gap: 8px;
     }
-    .main-content ul:not(.anketa-list):not(.content-nav):not(.custom-bullet-list) {
+    /* Скрываем стандартные маркеры, используем кастомные для всех ul */
+    .main-content ul:not(.anketa-list):not(.content-nav) {
       list-style: none;
       padding-left: 0;
     }
-    .main-content ul:not(.anketa-list):not(.content-nav):not(.custom-bullet-list) li::before {
+    .main-content ul:not(.anketa-list):not(.content-nav) li::before {
       content: "●";
       color: #a4839e;
       font-size: 1em;
@@ -343,7 +340,6 @@
       font-weight: 600;
       color: #a4839e;
     }
-    /* Список реквестов/коллабов/трейдов — плотно */
     .inline-status-list {
       margin: 0 0 12px 0;
     }
@@ -352,7 +348,7 @@
     }
     .extra-margin-top { margin-top: 28px; }
 
-    /* Оглавление — по центру */
+    /* Оглавление */
     .content-wrapper {
       margin-bottom: 24px;
       text-align: center;
@@ -407,14 +403,14 @@
     }
     .content-nav a:hover { color: #a4839e; transform: translateX(4px); }
     
-    /* Кружки — фиолетовые */
+    /* ---------- КРУЖКИ: единый стандарт 10x10 ---------- */
     .bullet-filled {
       display: inline-block;
       width: 10px;
       height: 10px;
       border-radius: 50%;
       background-color: #a4839e;
-      margin-right: 6px;
+      margin-right: 8px;
       flex-shrink: 0;
     }
     .bullet {
@@ -424,11 +420,10 @@
       border-radius: 50%;
       border: 2px solid #a4839e;
       background-color: transparent;
-      margin-right: 6px;
+      margin-right: 8px;
       flex-shrink: 0;
     }
 
-    /* Анкета */
     .anketa-list {
       list-style: none;
       margin-left: 0;
@@ -442,7 +437,7 @@
     }
     .strikethrough { text-decoration: line-through; }
 
-    /* Соглашение — только литые кружки */
+    /* Списки в соглашении и наценках — единые кружки */
     .custom-bullet-list {
       list-style: none;
       padding-left: 0;
@@ -452,6 +447,10 @@
       align-items: center;
       gap: 8px;
       margin-bottom: 8px;
+    }
+    /* Убираем лишние псевдоэлементы для этих списков */
+    .custom-bullet-list li::before {
+      content: none !important;
     }
 
     /* Правая панель */
@@ -665,9 +664,9 @@
       
       <div id="comm-commish" class="price-item comm-status-row"><strong>Коммишены:</strong> <span class="status-open-custom">открыты</span></div>
       
-      <div id="comm-headshot" class="price-item"><h4>Хедшот — <span class="price-amount">1000 ₽</span></h4><div class="examples-gallery grid-2x2"><img class="gallery-img" src="images/1.png"><img class="gallery-img" src="images/2.jpg"><img class="gallery-img" src="images/3.jpg"><img class="gallery-img" src="images/4.jpg"></div></div>
-      <div id="comm-halfbody" class="price-item"><h4>Халфбоди — <span class="price-amount">1500 ₽</span></h4><div class="examples-gallery grid-2x2"><img class="gallery-img" src="images/5.png"><img class="gallery-img" src="images/6.png"><img class="gallery-img" src="images/7.png"></div></div>
-      <div id="comm-fullbody" class="price-item"><h4>Полнорост — <span class="price-amount">2000 ₽</span></h4><div class="examples-gallery grid-2x2"><img class="gallery-img" src="images/8.png"><img class="gallery-img" src="images/9.png"><img class="gallery-img" src="images/10.png"></div></div>
+      <div id="comm-headshot" class="price-item"><h4>Хедшот — <span class="price-amount">1000 ₽</span></h4><div class="examples-gallery grid-2x2"><img class="gallery-img" src="images/1.jpg"><img class="gallery-img" src="images/2.png"><img class="gallery-img" src="images/3.jpg"><img class="gallery-img" src="images/4.jpg"></div></div>
+      <div id="comm-halfbody" class="price-item"><h4>Халфбоди — <span class="price-amount">1500 ₽</span></h4><div class="examples-gallery grid-2x2"><img class="gallery-img" src="images/5.jpg"><img class="gallery-img" src="images/6.jpg"><img class="gallery-img" src="images/7.jpg"></div></div>
+      <div id="comm-fullbody" class="price-item"><h4>Полнорост — <span class="price-amount">2000 ₽</span></h4><div class="examples-gallery grid-2x2"><img class="gallery-img" src="images/8.png"><img class="gallery-img" src="images/9.jpg"><img class="gallery-img" src="images/10.png"></div></div>
       <div id="comm-ref" class="price-item"><h4>Референс — <span class="price-amount">2000-3000 ₽</span></h4><p>Цена складывается из количества ракурсов персонажа на реф листе, наличия блока с информацией, дополнительных предметов и одежды. Пока лишь у меня нет примеров того, какой референс сколько будет стоить, но референс с вкладки "Обо мне" - пример за 3000 рублей.</p><div class="examples-gallery grid-1x2"><img class="gallery-img" src="images/11.png"><img class="gallery-img" src="images/12.png"></div></div>
       <div id="comm-item" class="price-item"><h4>Предмет/медаль/костюм/баннер — <span class="price-amount">500 ₽</span></h4><p>Фиксированная цена, от сложности она не меняется. Данный раздел с той же ценовой категорией может пополняться похожим небольшим форматом.</p><div class="examples-gallery grid-2x2"><img class="gallery-img" src="images/13.png"><img class="gallery-img" src="images/14.png"><img class="gallery-img" src="images/15.png"></div></div>
       <div id="comm-bg" class="price-item"><h4>Фон на локацию — <span class="price-amount">1500-3000 ₽</span></h4><p>Природный пейзаж с минимум сложных предметов стоит дешевле, чем городской пейзаж или работа, где много техники и любых других предметов, созданных человеком.</p><div class="examples-gallery grid-2x2"><img class="gallery-img" src="images/16.png"><img class="gallery-img" src="images/17.png"><img class="gallery-img" src="images/18.png"></div></div>
@@ -682,7 +681,10 @@
       </div>
       
       <div id="comm-what" class="price-item extra-margin-top"><strong>Что рисую</strong><p><strong>Рисую:</strong> котов, пони, драконов, их антро и чиби версии. Могу попробовать других животных, но не обещаю, что соглашусь.<br><strong>Не рисую:</strong> людей, нсфв, фетиши, сильные намеки на романтические отношения (к этому НЕ относятся варианты поз и действий, которые могут делать друзья). Я не буду добавлять изображения, содержащие символику или любые другие элементы, которые могут нарушать российские законы.</p></div>
-      <div id="comm-extra" class="price-item"><strong>Наценки</strong><ul><li>За второго персонажа +50% того же формата.</li><li>За фон +500-1500 в зависимости от сложности (касается хедшота, халфбоди, полнороста, клона).</li><li>За одежду на антро 500-1500 в зависимости от количества. Мелкие детали вроде украшений или простых головных уборов не считаются.</li><li>За крупные правки (пример: при готовом лайне просите полностью поменять позу) от 100 рублей в зависимости от количества. Мелкие правки не считаю.</li></ul><p>Если есть сомнения, буду ли я брать плату за какие-то вещи или не понятна грань перехода из несложного в сложное, то пишите в лс ВК, со всем готова разобраться.</p></div>
+      <div id="comm-extra" class="price-item"><strong>Наценки</strong>
+        <ul class="custom-bullet-list"><li><span class="bullet-filled"></span> За второго персонажа +50% того же формата.</li><li><span class="bullet-filled"></span> За фон +500-1500 в зависимости от сложности (касается хедшота, халфбоди, полнороста, клона).</li><li><span class="bullet-filled"></span> За одежду на антро 500-1500 в зависимости от количества. Мелкие детали вроде украшений или простых головных уборов не считаются.</li><li><span class="bullet-filled"></span> За крупные правки (пример: при готовом лайне просите полностью поменять позу) от 100 рублей в зависимости от количества. Мелкие правки не считаю.</li></ul>
+        <p>Если есть сомнения, буду ли я брать плату за какие-то вещи или не понятна грань перехода из несложного в сложное, то пишите в лс ВК, со всем готова разобраться.</p>
+      </div>
       <div id="comm-slots" class="price-item"><strong>Слоты</strong><p>Работаю по слотам. Слоты открываю периодически в ТГК.</p></div>
       <div id="comm-pay" class="price-item"><strong>Оплата</strong><p>Оплата производиться на сбер. Предоплата 50% (100% по желанию). Если не буду успевать по дедлайну - верну деньги/сделаю скидку.</p><p>Если вы не нашли нужный формат работы, то можете уточнить в лс ВК с информацией о том, что вы хотите заказать. <a href="https://vk.com/albums-235915713" target="_blank" style="color:#a4839e;">Больше примеров работ в ВК</a>.</p></div>
       <div id="comm-deadline" class="price-item"><strong>Дедлайн</strong><p>Стандартно дедлайн от 2 недель до трёх месяцев, в зависимости от сложности работы. Дедлайн считается с дня, когда вы оплатили предоплату после скинутого скетча! Если же у вас есть четкий дедлайн, то указывайте его сразу.</p></div>
@@ -693,61 +695,93 @@
 
     const howtoText = `<h3>Как сделать заказ?</h3><p>Ознакомьтесь с информацией в этой вкладке. Если видите открытый слот в ТГК, то откройте <a href="https://vk.com/im/convo/-235915713?entrypoint=community_page&tab=all" target="_blank" style="color:#a4839e; text-decoration:underline;">сообщения в ВК</a>/на варе (на варе обязательно пишите тему: заказ). Заполните анкету. Приветствуется четкое тз с референсами (и реф персонажа и картинки-референсы).</p><h4>Анкета:</h4><ul class="anketa-list"><li><span class="bullet-filled"></span> Формат работы (хэд/халф/полнорост или др.) + дополнительная информация (доп. информация предполагает пункты из наценок).</li><li><span class="bullet-filled"></span> Информация. Подробно опишите позу персонаж(а/ей), если есть доп. информация, то описывать ее подробнее здесь/опишите то, что вы хотите видеть на фоне/предмете/костюме/медали.</li><li><span class="bullet-filled"></span> Ознакомились ли вы с соглашением (да/нет).</li><li><span class="bullet"></span> Референс(ы) персонаж(а/жей)/окрас(ы) на прозрачном фоне, референсы поз, эмоций, одежды и т. п., НО КАРТИНКИ ФАЙЛАМИ, ВК СИЛЬНО СЖИМАЕТ КАЧЕСТВО!!! (пункт не нумеруется, вы сразу скидываете фотографии, можно отдельным сообщением, тут как вам удобней).</li></ul><h4>Пример:</h4><ul class="anketa-list"><li><span class="bullet-filled"></span> Фулл с фоном.</li><li><span class="bullet-filled"></span> Кот сидит на берегу реки и пьет воду, пейзаж летний, все происходит в лесу, кот в 3/4.</li><li><span class="bullet-filled"></span> Да.</li><li><span class="bullet"></span> <em>*далее идут фотографии персонажа и референсов для фона*.</em></li></ul><hr><p>Будьте терпеливы, если мне понадобиться ответить позже я обязательно сообщу. Имейте в виду, ложь в 3 пункте будет лишь на вашей совести, при возникновении конфликта я оставляю за собой право прекратить работу над заказом и вернуть 50% оплаты, если работа была частично сделана.</p>`;
 
-    // ---------- ГАЛЕРЕЯ ----------
-    const allImages = [
-      "images/1.png","images/2.jpg","images/3.jpg","images/4.jpg","images/5.png","images/6.png","images/7.png",
-      "images/8.png","images/9.png","images/10.png","images/11.png","images/12.png","images/13.png","images/14.png",
-      "images/15.png","images/16.png","images/17.png","images/18.png","images/19.png","images/20.jpg","images/21.jpg","images/22.png","images/my_referens.png"
-    ];
-    function findImageIndex(src) { return allImages.findIndex(s => s === src); }
+    // ---------- ГАЛЕРЕЯ: динамический сбор всех картинок-примеров ----------
+    function getAllGalleryImages() {
+      const imgs = document.querySelectorAll('.gallery-img');
+      const urls = [];
+      imgs.forEach(img => {
+        if (img.src && !urls.includes(img.src)) urls.push(img.src);
+      });
+      return urls;
+    }
+
     function openFullGallery(startSrc) {
-      let idx = findImageIndex(startSrc);
+      const allImages = getAllGalleryImages();
+      if (allImages.length === 0) return;
+      
+      let idx = allImages.indexOf(startSrc);
       if (idx === -1) idx = 0;
       const total = allImages.length;
+      
       const modal = document.createElement('div');
       modal.style.cssText = `position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:10001; display:flex; align-items:center; justify-content:center;`;
+      
       const box = document.createElement('div');
       box.style.cssText = `background:#ffefdd; border-radius:30px; padding:30px; max-width:85vw; max-height:85vh; position:relative; display:flex; flex-direction:column; align-items:center;`;
+      
       const closeBtn = document.createElement('button');
       closeBtn.innerHTML = '✕';
-      closeBtn.style.cssText = `position:absolute; top:-15px; right:-15px; width:40px; height:40px; background:#a4839e; border:none; border-radius:50%; font-size:24px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
+      closeBtn.style.cssText = `position:absolute; top:-15px; right:-15px; width:40px; height:40px; background:#a4839e; border:none; border-radius:50%; font-size:24px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.2);`;
       closeBtn.onclick = () => modal.remove();
+      
       const imgEl = document.createElement('img');
       imgEl.src = allImages[idx];
       imgEl.style.cssText = `max-width:100%; max-height:65vh; border-radius:20px; object-fit:contain;`;
+      
       const leftArrow = document.createElement('button');
       leftArrow.innerHTML = '◀';
-      leftArrow.style.cssText = `position:absolute; left:-65px; top:50%; transform:translateY(-50%); background:#a4839e; border:none; width:50px; height:50px; border-radius:40px; font-size:28px; cursor:pointer; color:#ffefdd;`;
+      leftArrow.style.cssText = `position:absolute; left:-65px; top:50%; transform:translateY(-50%); background:#a4839e; border:none; width:50px; height:50px; border-radius:40px; font-size:28px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
+      
       const rightArrow = document.createElement('button');
       rightArrow.innerHTML = '▶';
-      rightArrow.style.cssText = `position:absolute; right:-65px; top:50%; transform:translateY(-50%); background:#a4839e; border:none; width:50px; height:50px; border-radius:40px; font-size:28px; cursor:pointer; color:#ffefdd;`;
-      const update = () => { imgEl.src = allImages[idx]; };
-      leftArrow.onclick = (e) => { e.stopPropagation(); idx = (idx - 1 + total) % total; update(); };
-      rightArrow.onclick = (e) => { e.stopPropagation(); idx = (idx + 1) % total; update(); };
-      box.append(closeBtn, imgEl);
-      if (window.innerWidth > 700) { box.append(leftArrow, rightArrow); }
+      rightArrow.style.cssText = `position:absolute; right:-65px; top:50%; transform:translateY(-50%); background:#a4839e; border:none; width:50px; height:50px; border-radius:40px; font-size:28px; cursor:pointer; color:#ffefdd; display:flex; align-items:center; justify-content:center;`;
+      
+      const updateImage = () => { imgEl.src = allImages[idx]; };
+      
+      leftArrow.onclick = (e) => { e.stopPropagation(); idx = (idx - 1 + total) % total; updateImage(); };
+      rightArrow.onclick = (e) => { e.stopPropagation(); idx = (idx + 1) % total; updateImage(); };
+      
+      box.appendChild(closeBtn);
+      box.appendChild(imgEl);
+      if (window.innerWidth > 700) {
+        box.appendChild(leftArrow);
+        box.appendChild(rightArrow);
+      }
       modal.appendChild(box);
       document.body.appendChild(modal);
-      let touchStart = 0;
-      modal.addEventListener('touchstart', (e) => { touchStart = e.touches[0].clientX; });
+      
+      // Touch events
+      let touchStartX = 0;
+      modal.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
       modal.addEventListener('touchend', (e) => {
-        const dx = e.changedTouches[0].clientX - touchStart;
-        if (Math.abs(dx) > 50) { dx > 0 ? idx = (idx - 1 + total) % total : idx = (idx + 1) % total; update(); }
+        const diffX = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(diffX) > 50) {
+          if (diffX > 0) idx = (idx - 1 + total) % total;
+          else idx = (idx + 1) % total;
+          updateImage();
+        }
       });
+      
+      // Keyboard
       const keyHandler = (e) => {
-        if (e.key === 'ArrowLeft') { idx = (idx - 1 + total) % total; update(); e.preventDefault(); }
-        else if (e.key === 'ArrowRight') { idx = (idx + 1) % total; update(); e.preventDefault(); }
+        if (e.key === 'ArrowLeft') { idx = (idx - 1 + total) % total; updateImage(); e.preventDefault(); }
+        else if (e.key === 'ArrowRight') { idx = (idx + 1) % total; updateImage(); e.preventDefault(); }
         else if (e.key === 'Escape') { modal.remove(); window.removeEventListener('keydown', keyHandler); }
       };
       window.addEventListener('keydown', keyHandler);
       modal.addEventListener('keydown', keyHandler);
     }
+
+    // Клик по картинке — открываем галерею именно с этой картинки
     document.addEventListener('click', (e) => {
       const target = e.target.closest('.gallery-img');
-      if (target && target.src) { e.preventDefault(); openFullGallery(target.src); }
+      if (target && target.src) {
+        e.preventDefault();
+        openFullGallery(target.src);
+      }
     });
 
-    // ---------- УПРАВЛЕНИЕ СЕКЦИЯМИ ----------
+    // ---------- УПРАВЛЕНИЕ СЕКЦИЯМИ И СКРОЛЛБАРОМ ----------
     const dynamicDiv = document.getElementById('dynamicContent');
     const rects = document.querySelectorAll('.switch-rect');
     const scrollContainer = document.getElementById('scrollableContent');
@@ -765,6 +799,7 @@
       const maxTop = trackHeight - thumbHeight;
       thumb.style.top = (scrollPercent * maxTop) + 'px';
     }
+    
     function initScroll() {
       if (!scrollContainer || !scrollbar || !thumb) return;
       updateThumb();
@@ -787,14 +822,17 @@
     }
 
     const sections = { about: aboutText, commissions: commissionsText, howto: howtoText };
+    
     function setActive(section) {
       rects.forEach(rect => rect.classList.toggle('active', rect.getAttribute('data-section') === section));
     }
+    
     function switchTo(section) {
       dynamicDiv.innerHTML = sections[section] || '<h3>Белый Лебедь · Мерц</h3><p>Выберите раздел справа.</p>';
       scrollContainer.scrollTop = 0;
       setTimeout(updateThumb, 50);
       setActive(section);
+      
       if (section === 'commissions') {
         setTimeout(() => {
           const headerEl = document.getElementById('contentHeader');
@@ -811,6 +849,7 @@
         }, 10);
       }
     }
+    
     rects.forEach(rect => rect.addEventListener('click', (e) => { e.stopPropagation(); switchTo(rect.getAttribute('data-section')); }));
     switchTo('about');
     initScroll();
